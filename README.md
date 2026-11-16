@@ -9,6 +9,7 @@ A full-stack todo app for personal tasks and team workspaces. Track deadlines, b
 - **Parts and progress** — break a task into parts and see a live progress bar
 - **Progress notes** — comment on tasks as work advances
 - **Filters** — All, Pending, Overdue, Completed
+- **Reopen tasks** — move a completed task back to pending if it was marked by mistake
 - **History** — completed tasks and one-click cleanup
 - **Teams** — create a team, invite teammates by email or invite code
 - **Shared team tasks** — every member sees all team tasks and their owners

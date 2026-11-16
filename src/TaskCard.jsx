@@ -31,6 +31,7 @@ export default function TaskCard({
   onChange,
   onComment,
   onComplete,
+  onReopen,
   onDelete,
   ownerEmail,
 }) {
@@ -98,6 +99,16 @@ export default function TaskCard({
           >
             {expanded ? labels.hide : labels.details}
           </button>
+          {completed && onReopen && (
+            <button
+              className="btn btn-ghost"
+              onClick={onReopen}
+              title="Move this task back to pending"
+              aria-label={`Mark ${task.text} as pending`}
+            >
+              {labels.reopen}
+            </button>
+          )}
           {onDelete && (
             <button
               className="btn btn-ghost"

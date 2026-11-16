@@ -142,6 +142,17 @@ export default function PersonalBoard({ onAuthError }) {
     }
   }
 
+  async function reopenTask(id) {
+    try {
+      const { task } = await api.updateTask(id, { completedAt: null });
+      setHistory((prev) => prev.filter((item) => item.id !== id));
+      setTasks((prev) => [task, ...prev]);
+      if (expandedId === id) setExpandedId(null);
+    } catch (err) {
+      handleError(err);
+    }
+  }
+
   async function deleteTask(id) {
     try {
       await api.deleteTask(id);
@@ -290,6 +301,7 @@ export default function PersonalBoard({ onAuthError }) {
                     : (action) => handleTaskAction(task.id, action)
                 }
                 onComplete={() => completeTask(task.id)}
+                onReopen={completed ? () => reopenTask(task.id) : undefined}
                 onDelete={() =>
                   completed ? deleteHistoryItem(task.id) : deleteTask(task.id)
                 }

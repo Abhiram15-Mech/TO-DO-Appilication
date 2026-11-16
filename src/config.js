@@ -22,6 +22,7 @@ export const config = {
     clearHistory: "Clear history",
     delete: "Delete",
     remove: "Remove",
+    reopen: "Mark as pending",
     details: "Details",
     hide: "Hide",
     parts: "Parts of this task",

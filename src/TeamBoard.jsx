@@ -172,6 +172,17 @@ export default function TeamBoard({ user, teamId, onAuthError }) {
     }
   }
 
+  async function reopenTask(id) {
+    try {
+      const { task } = await api.updateTeamTask(teamId, id, { completedAt: null });
+      setHistory((prev) => prev.filter((item) => item.id !== id));
+      setTasks((prev) => [task, ...prev]);
+      if (expandedId === id) setExpandedId(null);
+    } catch (err) {
+      handleError(err);
+    }
+  }
+
   async function deleteTask(id) {
     try {
       await api.deleteTeamTask(teamId, id);
@@ -399,6 +410,9 @@ export default function TeamBoard({ user, teamId, onAuthError }) {
                   }
                   onComplete={
                     !completed && taskOwner ? () => completeTask(task.id) : undefined
+                  }
+                  onReopen={
+                    completed && taskOwner ? () => reopenTask(task.id) : undefined
                   }
                   onDelete={
                     taskOwner
