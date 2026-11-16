@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { api } from "./api.js";
 import { config } from "./config.js";
+import ThemeToggle from "./ThemeToggle.jsx";
 
-export default function AuthScreen({ onAuth }) {
+export default function AuthScreen({ onAuth, theme, onToggleTheme }) {
   const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +35,7 @@ export default function AuthScreen({ onAuth }) {
 
   return (
     <div className="auth-shell">
+      <ThemeToggle theme={theme} onToggle={onToggleTheme} />
       <div className="auth-card">
         <p className="eyebrow">{config.eyebrow}</p>
         <h1>{isRegister ? "Create your account" : "Welcome back"}</h1>

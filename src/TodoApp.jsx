@@ -4,8 +4,9 @@ import { config } from "./config.js";
 import PersonalBoard from "./PersonalBoard.jsx";
 import TeamBoard from "./TeamBoard.jsx";
 import TeamManager from "./TeamManager.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
 
-export default function TodoApp({ user, onLogout }) {
+export default function TodoApp({ user, onLogout, theme, onToggleTheme }) {
   const [view, setView] = useState("personal");
   const [teams, setTeams] = useState([]);
   const [invitations, setInvitations] = useState([]);
@@ -120,9 +121,12 @@ export default function TodoApp({ user, onLogout }) {
 
         <div className="sidebar-footer">
           <span className="sidebar-user">{user.email}</span>
-          <button className="btn btn-ghost" onClick={onLogout}>
-            Log out
-          </button>
+          <div className="sidebar-footer-actions">
+            <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+            <button className="btn btn-ghost" onClick={onLogout}>
+              Log out
+            </button>
+          </div>
         </div>
       </aside>
 
