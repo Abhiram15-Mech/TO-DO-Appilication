@@ -43,9 +43,20 @@ export default function TaskCard({
     <li className={`task-card ${completed ? "is-done" : ""}`}>
       <div className="task-row">
         {completed ? (
-          <span className="check is-checked" aria-hidden="true">
-            <span className="check-dot" />
-          </span>
+          onReopen ? (
+            <button
+              className="check is-checked"
+              onClick={onReopen}
+              title="Restore this task to pending"
+              aria-label={`Restore ${task.text} to pending`}
+            >
+              <span className="check-dot" />
+            </button>
+          ) : (
+            <span className="check is-checked" aria-hidden="true">
+              <span className="check-dot" />
+            </span>
+          )
         ) : onComplete ? (
           <button
             className="check"
